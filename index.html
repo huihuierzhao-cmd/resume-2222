@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>赵嘉荟 | Finance · Data · AI</title>
+  <meta name="description" content="赵嘉荟个人网页｜Financial Analysis, Data Intelligence, AI Automation" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --sky:#98B4D4;
+      --classic:#0F4C81;
+      --mist:#93A9D1;
+      --deep:#0A2F52;
+      --ink:#102033;
+      --text:#142033;
+      --text-soft:#506176;
+      --muted:#71839a;
+      --white:#ffffff;
+      --line:rgba(15,76,129,.12);
+      --line-strong:rgba(15,76,129,.18);
+      --card:rgba(255,255,255,.62);
+      --card-strong:rgba(255,255,255,.78);
+      --glass-border:rgba(255,255,255,.58);
+      --shadow:0 12px 40px rgba(17,34,68,.08);
+      --shadow-lg:0 24px 70px rgba(17,34,68,.14);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --max:1240px;
+      --nav-h:72px;
+      --font-cn:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      --font-en:"Inter",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-en),var(--font-cn);
+      color:var(--text);
+      line-height:1.7;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(152,180,212,.30), transparent 25%),
+        radial-gradient(circle at 92% 12%, rgba(147,169,209,.22), transparent 22%),
+        radial-gradient(circle at 80% 80%, rgba(15,76,129,.08), transparent 28%),
+        linear-gradient(180deg,#f8fbff 0%,#f3f7fb 52%,#eef4fa 100%);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+
+    .lang-en, body.en .lang-zh{display:none}
+    body.en .lang-en{display:initial}
+    body.en{
+      font-family:var(--font-en),sans-serif;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button,textarea,input{font:inherit}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.58));
+      border:1px solid var(--glass-border);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(22px) saturate(140%);
+      -webkit-backdrop-filter:blur(22px) saturate(140%);
+    }
+
+    .soft-glow::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:inherit;
+      background:linear-gradient(135deg, rgba(152,180,212,.24), rgba(255,255,255,0), rgba(15,76,129,.12));
+      z-index:-1;
+      filter:blur(14px);
+      opacity:.9;
+    }
+
+    .section{padding:100px 0;position:relative}
+    .section-title-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:24px;
+      margin-bottom:36px;
+    }
+    .section-kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--classic);
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(15,76,129,.10);
+      padding:8px 12px;border-radius:999px;margin-bottom:14px;
+    }
+    .section-title{
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.08;
+      letter-spacing:-.04em;
+      font-weight:800;
+    }
+    .section-desc{
+      max-width:680px;
+      color:var(--text-soft);
+      font-size:16px;
+    }
+
+    .nav-wrap{
+      position:sticky;top:16px;z-index:120;padding-top:16px;
+    }
+    .navbar{
+      width:min(var(--max),calc(100% - 24px));
+      margin:0 auto;
+      min-height:var(--nav-h);
+      padding:12px 16px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      position:relative;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      line-height:1.08;
+      min-width:160px;
+    }
+    .brand strong{
+      font-size:16px;font-weight:800;letter-spacing:-.03em;
+    }
+    .brand span{
+      color:var(--muted);font-size:12px;
+    }
+    .nav-center{
+      display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    }
+    .nav-center a{
+      font-size:14px;color:var(--text-soft);transition:.25s ease;
+    }
+    .nav-center a:hover{color:var(--classic)}
+    .nav-right{
+      display:flex;align-items:center;gap:10px;
+    }
+
+    .lang-switch{
+      display:flex;
+      background:rgba(255,255,255,.58);
+      border:1px solid rgba(15,76,129,.10);
+      border-radius:999px;
+      padding:4px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.55);
+    }
+    .lang-btn{
+      border:none;background:transparent;color:var(--text-soft);
+      min-width:56px;height:38px;border-radius:999px;cursor:pointer;
+      font-size:13px;font-weight:700;transition:.25s ease;
+    }
+    .lang-btn.active{
+      background:linear-gradient(135deg,var(--classic),var(--deep));
+      color:#fff;
+      box-shadow:0 8px 18px rgba(15,76,129,.24);
+    }
+
+    .nav-cta{
+      min-width:148px;
+      height:52px;
+      border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:0 22px;
+      color:#fff;
+      font-weight:700;
+      background:linear-gradient(135deg, #2D6A9F 0%, var(--classic) 55%, #0B3D68 100%);
+      box-shadow:
+        0 12px 30px rgba(15,76,129,.24),
+        inset 0 1px 0 rgba(255,255,255,.14);
+      transition:transform .28s ease, box-shadow .28s ease, filter .28s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .nav-cta::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(120deg, transparent 20%, rgba(255,255,255,.24) 45%, transparent 70%);
+      transform:translateX(-120%);
+      transition:transform .8s ease;
+    }
+    .nav-cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 40px rgba(15,76,129,.28);
+      filter:saturate(105%);
+    }
+    .nav-cta:hover::after{transform:translateX(120%)}
+
+    .hero{
+      padding:72px 0 56px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:34px;
+      align-items:center;
+    }
+    .hero-left{padding:20px 0;position:relative}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:10px;
+      border-radius:999px;padding:10px 16px;
+      font-size:13px;font-weight:700;color:var(--classic);
+      margin-bottom:24px;
+    }
+    .hero-badge .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:linear-gradient(135deg,var(--sky),var(--classic));
+      box-shadow:0 0 0 6px rgba(152,180,212,.18);
+    }
+
+    .hero-title{
+      font-family:var(--font-en),sans-serif;
+      letter-spacing:-.055em;
+      margin-bottom:18px;
+    }
+    .hero-name{
+      display:block;
+      font-size:clamp(44px,7vw,84px);
+      line-height:.95;
+      font-weight:800;
+      color:var(--ink);
+      margin-bottom:18px;
+    }
+    .slogan-stack{
+      display:grid;
+      gap:4px;
+      margin:8px 0 18px;
+    }
+    .slogan-main{
+      font-size:clamp(34px,4.6vw,58px);
+      font-weight:800;
+      line-height:1.02;
+      color:var(--deep);
+      letter-spacing:-.055em;
+    }
+    .slogan-sub{
+      font-size:clamp(18px,1.7vw,24px);
+      font-weight:500;
+      line-height:1.28;
+      color:#385574;
+      letter-spacing:-.03em;
+    }
+
+    .hero-desc{
+      max-width:660px;
+      color:var(--text-soft);
+      font-size:17px;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:52px;padding:0 20px;border-radius:999px;
+      font-weight:700;border:1px solid transparent;cursor:pointer;
+      transition:.28s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg, #2D6A9F 0%, var(--classic) 58%, #0B3D68 100%);
+      box-shadow:0 14px 30px rgba(15,76,129,.22);
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 22px 42px rgba(15,76,129,.26);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.72);
+      border-color:rgba(15,76,129,.10);
+      color:var(--deep);
+    }
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.92);
+    }
+
+    .hero-tags{display:flex;flex-wrap:wrap;gap:10px}
+    .tag{
+      padding:10px 14px;border-radius:999px;
+      font-size:13px;font-weight:600;color:#3c5979;
+      border:1px solid rgba(15,76,129,.08);
+      background:rgba(255,255,255,.54);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-right{position:relative}
+    .hero-photo-shell{
+      position:relative;
+      padding:18px;
+      border-radius:38px;
+      overflow:hidden;
+      min-height:620px;
+    }
+    .hero-photo-shell::before{
+      content:"";
+      position:absolute;
+      width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle, rgba(152,180,212,.35), transparent 65%);
+      top:-60px;right:-40px;
+      filter:blur(6px);
+    }
+    .hero-photo-shell::after{
+      content:"";
+      position:absolute;
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(15,76,129,.18), transparent 70%);
+      bottom:-40px;left:-40px;
+      filter:blur(8px);
+    }
+    .hero-photo{
+      width:100%;height:100%;object-fit:cover;
+      border-radius:28px;
+      position:relative;z-index:2;
+      box-shadow:0 24px 60px rgba(16,32,51,.18);
+    }
+
+    .float-card{
+      position:absolute;z-index:4;
+      padding:16px 18px;border-radius:22px;
+      background:rgba(255,255,255,.64);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      min-width:190px;
+    }
+    .float-card small{
+      display:block;font-size:12px;color:var(--muted);margin-bottom:4px
+    }
+    .float-card strong{
+      display:block;font-size:16px;line-height:1.3;color:var(--ink)
+    }
+    .float-1{top:30px;right:-12px}
+    .float-2{left:-12px;bottom:60px}
+
+    .matcher{
+      margin-top:28px;
+      position:relative;
+    }
+    .matcher-shell{
+      border-radius:34px;
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .matcher-shell::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(152,180,212,.22), transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(15,76,129,.08), transparent 30%);
+      pointer-events:none;
+    }
+    .matcher-top{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
+      margin-bottom:16px;position:relative;z-index:2;
+    }
+    .matcher-title{
+      font-size:24px;font-weight:800;letter-spacing:-.03em;color:var(--deep)
+    }
+    .matcher-input-wrap{
+      display:grid;grid-template-columns:1fr auto;gap:14px;
+      align-items:stretch;position:relative;z-index:2;
+    }
+    .matcher textarea{
+      width:100%;min-height:110px;resize:vertical;
+      border:none;outline:none;
+      padding:20px 20px 18px;
+      border-radius:24px;
+      background:rgba(255,255,255,.78);
+      color:var(--text);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+      border:1px solid rgba(15,76,129,.10);
+    }
+    .matcher textarea::placeholder{color:#8a99ac}
+    .analyze-btn{
+      min-width:170px;
+      align-self:stretch;
+      border:none;
+      border-radius:24px;
+      padding:18px 18px;
+      color:#fff;
+      font-weight:800;
+      background:linear-gradient(135deg, #2D6A9F 0%, var(--classic) 58%, #0B3D68 100%);
+      box-shadow:0 16px 34px rgba(15,76,129,.22);
+      cursor:pointer;
+      transition:.28s ease;
+    }
+    .analyze-btn:hover{transform:translateY(-2px);box-shadow:0 22px 44px rgba(15,76,129,.28)}
+    .matcher-results{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr .9fr;
+      gap:16px;
+      position:relative;z-index:2;
+    }
+    .hidden-results{
+      display:none;
+    }
+    .matcher-results.show-results{
+      display:grid;
+      animation:fadeUp .6s ease forwards;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(18px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .result-card{
+      padding:22px;
+      border-radius:26px;
+      min-height:220px;
+      transition:.3s ease;
+    }
+    .result-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .result-title{
+      font-size:18px;font-weight:800;letter-spacing:-.02em;
+      margin-bottom:14px;color:var(--ink)
+    }
+    .score-head{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:14px;
+    }
+    .score-big{
+      font-size:40px;font-weight:800;line-height:1;color:var(--deep)
+    }
+    .score-label{
+      color:var(--muted);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em
+    }
+    .matrix{
+      display:grid;gap:12px
+    }
+    .matrix-row{
+      display:grid;
+      grid-template-columns:92px 1fr 42px;
+      gap:10px;align-items:center;
+    }
+    .matrix-row span{font-size:14px;color:var(--text-soft);font-weight:600}
+    .bar{
+      height:10px;border-radius:999px;background:rgba(15,76,129,.08);overflow:hidden
+    }
+    .bar-fill{
+      height:100%;border-radius:999px;
+      background:linear-gradient(90deg,var(--sky),var(--classic));
+      width:0;
+      transition:width .8s ease;
+    }
+    .matrix-row b{font-size:13px;color:var(--deep)}
+    .highlight-list,
+    .summary-list{
+      list-style:none;display:grid;gap:10px
+    }
+    .highlight-list li,
+    .summary-list li{
+      padding-left:16px;position:relative;color:var(--text-soft);font-size:14px
+    }
+    .highlight-list li::before,
+    .summary-list li::before{
+      content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;
+      background:linear-gradient(135deg,var(--sky),var(--classic));
+    }
+    .summary-box{
+      color:var(--text-soft);font-size:15px;
+      padding:14px 16px;border-radius:18px;
+      background:rgba(15,76,129,.04);
+      border:1px solid rgba(15,76,129,.08);
+    }
+
+    .about-grid{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:18px
+    }
+    .about-card,.quick-card,.timeline-card,.skill-card,.project-card,.edu-card,.award-card,.contact-card{
+      position:relative;
+      border-radius:var(--radius-xl);
+      transition:transform .34s ease, box-shadow .34s ease, background .34s ease;
+    }
+    .about-card:hover,.quick-card:hover,.timeline-card:hover,.skill-card:hover,.project-card:hover,.edu-card:hover,.award-card:hover,.contact-card:hover,.result-card:hover{
+      transform:translateY(-6px) scale(1.008);
+      box-shadow:var(--shadow-lg);
+      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.66));
+    }
+    .about-card,.quick-card{padding:28px}
+    .about-card p{font-size:16px;color:var(--text-soft);margin-bottom:18px}
+    .quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .quick-item{
+      padding:18px;border-radius:20px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(15,76,129,.06);
+    }
+    .quick-item span{
+      display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px
+    }
+    .quick-item strong{font-size:15px;line-height:1.45}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .skill-card{padding:24px}
+    .skill-index{
+      font-size:13px;font-weight:800;color:var(--classic);letter-spacing:.06em;margin-bottom:12px
+    }
+    .skill-title{
+      font-size:22px;line-height:1.15;font-weight:800;letter-spacing:-.03em;margin-bottom:14px
+    }
+    .skill-list{list-style:none;display:grid;gap:10px}
+    .skill-list li{
+      font-size:15px;color:var(--text-soft);
+      padding-left:16px;position:relative;
+    }
+    .skill-list li::before{
+      content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;
+      background:linear-gradient(135deg,var(--sky),var(--classic));
+    }
+
+    .timeline{display:grid;gap:18px}
+    .timeline-card{padding:28px}
+    .timeline-top{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:14px
+    }
+    .timeline-role{
+      font-size:24px;font-weight:800;letter-spacing:-.03em;line-height:1.14
+    }
+    .timeline-company{font-size:15px;color:var(--text-soft);margin-top:4px}
+    .timeline-date{
+      white-space:nowrap;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(15,76,129,.08);
+      color:var(--classic);
+      font-size:13px;font-weight:800;
+    }
+    .timeline-list{list-style:none;display:grid;gap:10px}
+    .timeline-list li{
+      font-size:15px;color:var(--text-soft);padding-left:18px;position:relative
+    }
+    .timeline-list li::before{
+      content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;
+      background:linear-gradient(135deg,var(--sky),var(--classic));
+    }
+
+    .bento-grid{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:18px
+    }
+    .project-card{padding:24px;min-height:240px;overflow:hidden}
+    .project-lg{grid-column:span 7}
+    .project-md{grid-column:span 5}
+    .project-half{grid-column:span 6}
+    .project-title{
+      font-size:22px;font-weight:800;line-height:1.18;letter-spacing:-.03em;margin-bottom:8px
+    }
+    .project-meta{
+      font-size:13px;font-weight:800;color:var(--classic);margin-bottom:14px
+    }
+    .project-desc{font-size:15px;color:var(--text-soft);margin-bottom:14px}
+    .project-list{list-style:none;display:grid;gap:8px;margin-bottom:16px}
+    .project-list li{
+      font-size:14px;color:var(--text-soft);padding-left:16px;position:relative
+    }
+    .project-list li::before{
+      content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;
+      background:var(--classic)
+    }
+    .project-tags{display:flex;flex-wrap:wrap;gap:8px}
+    .project-tags span{
+      padding:8px 12px;border-radius:999px;
+      background:rgba(15,76,129,.07);color:var(--classic);
+      font-size:12px;font-weight:700;
+    }
+
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+    .edu-card,.award-card,.contact-card{padding:28px}
+
+    .edu-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+     margin-bottom:12px;
+    }
+     
+    .edu-school{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-.03em;
+  margin-bottom:0;
+  line-height:1.2;
+  flex:1;
+}
+
+.edu-logo{
+  object-fit:contain;
+  flex-shrink:0;
+  transition:transform .28s ease;
+}
+
+.edu-head:hover .edu-logo{
+  transform:translateY(-2px) scale(1.03);
+}
+
+.edu-logo.polyu{
+  width:210px;
+  max-width:46%;
+  height:auto;
+}
+
+.edu-logo.sisu{
+  width:210px;
+  max-width:46%;
+  height:auto;
+}
+
+    .edu-major{color:var(--text-soft);margin-bottom:10px}
+    .edu-date{
+      display:inline-flex;padding:8px 12px;border-radius:999px;
+      background:rgba(15,76,129,.05);color:var(--text-soft);font-size:13px;font-weight:700;margin-bottom:18px
+    }
+    .course-title{font-size:14px;font-weight:800;margin:14px 0 10px}
+    .course-tags{display:flex;flex-wrap:wrap;gap:10px}
+    .course-tags span{
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(15,76,129,.06);
+      color:var(--text-soft);font-size:13px
+    }
+
+    .awards-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    .award-list{list-style:none;display:grid;gap:12px}
+    .award-list li{
+      color:var(--text-soft);font-size:15px;padding-left:18px;position:relative
+    }
+    .award-list li::before{
+      content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;
+      background:linear-gradient(135deg,var(--sky),var(--classic));
+    }
+    .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .tools span{
+      padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.65);
+      border:1px solid rgba(15,76,129,.06);
+      color:var(--text-soft);font-size:13px
+    }
+
+    .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .contact-note{font-size:15px;color:var(--text-soft);margin-top:8px}
+    .contact-lines{display:grid;gap:14px;margin-top:18px}
+    .contact-line{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:14px 0;border-bottom:1px solid var(--line);font-size:15px
+    }
+    .contact-line span{color:var(--muted)}
+    .side-photo{
+      border-radius:24px;overflow:hidden;height:100%;min-height:360px
+    }
+    .side-photo img{
+      width:100%;height:100%;object-fit:cover
+    }
+
+    footer{padding:24px 0 40px;color:var(--muted);font-size:14px}
+    .footer-inner{
+      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      border-top:1px solid var(--line);padding-top:18px
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:1120px){
+      .hero-grid,.about-grid,.awards-grid,.contact-grid,.matcher-results{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .edu-grid{grid-template-columns:1fr}
+      .project-lg,.project-md,.project-half{grid-column:span 12}
+      .matcher-input-wrap{grid-template-columns:1fr}
+      .analyze-btn{min-height:56px}
+      .float-1,.float-2{position:static;margin-top:14px}
+      .hero-photo-shell{min-height:auto}
+    }
+
+    @media (max-width:760px){
+      .navbar{
+        border-radius:28px;
+        align-items:flex-start;
+      }
+      .nav-center{display:none}
+      .hero{padding-top:38px}
+      .section{padding:76px 0}
+      .quick-grid,.skills-grid{grid-template-columns:1fr}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .btn,.nav-cta{width:100%}
+      .nav-right{width:100%;flex-direction:column;align-items:stretch}
+      .lang-switch{width:100%;justify-content:center}
+      .lang-btn{flex:1}
+      .hero-name{font-size:46px}
+      .slogan-main{font-size:36px}
+      .slogan-sub{font-size:18px}
+      .section-title{font-size:32px}
+      .timeline-role,.edu-school,.project-title{font-size:20px}
+      .matrix-row{grid-template-columns:78px 1fr 36px}
+      .edu-head{
+        align-items:flex-start;
+      }
+      .edu-logo.polyu{
+        width:56px;
+        height:56px;
+      }
+      .edu-logo.sisu{
+        width:78px;
+        height:56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="navbar glass soft-glow">
+      <div class="brand">
+        <strong>赵嘉荟</strong>
+        <span>Finance × Data × AI</span>
+      </div>
+
+      <div class="nav-center">
+        <a href="#about">
+          <span class="lang-zh">关于我</span><span class="lang-en">About</span>
+        </a>
+        <a href="#skills">
+          <span class="lang-zh">核心能力</span><span class="lang-en">Strengths</span>
+        </a>
+        <a href="#experience">
+          <span class="lang-zh">实习经历</span><span class="lang-en">Experience</span>
+        </a>
+        <a href="#projects">
+          <span class="lang-zh">项目经历</span><span class="lang-en">Projects</span>
+        </a>
+        <a href="#education">
+          <span class="lang-zh">教育背景</span><span class="lang-en">Education</span>
+        </a>
+        <a href="#contact">
+          <span class="lang-zh">联系我</span><span class="lang-en">Contact</span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <div class="lang-switch glass">
+          <button class="lang-btn active" id="btn-zh">中文</button>
+          <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+        <a class="nav-cta" href="#contact">
+          <span class="lang-zh">联系我</span>
+          <span class="lang-en">Get in touch</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left reveal">
+          <div class="hero-badge glass">
+            <span class="dot"></span>
+            <span class="lang-zh">财务分析 · 数据分析 · AI 工作流探索</span>
+            <span class="lang-en">Financial Analysis · Data Intelligence · AI Workflow Exploration</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-name">Zhao Jiahui</span>
+            <span class="slogan-stack">
+              <span class="slogan-main">Think Beyond Accounting.</span>
+              <span class="slogan-sub">Financial Analysis.</span>
+              <span class="slogan-sub">Data Intelligence.</span>
+              <span class="slogan-sub">AI Automation.</span>
+            </span>
+          </h1>
+
+          <p class="hero-desc">
+            <span class="lang-zh">
+              香港理工大学会计学硕士在读，本科毕业于上海外国语大学会计学与英语双学位。
+              曾在蔚来汽车、沃尔沃集团、安永咨询、朗盛化学等企业参与预算管理、运营分析、资产评估与财务支持工作，
+              长期关注金融市场、行业趋势与宏观政策变化，习惯从企业基本面、市场情绪及估值逻辑等多个维度观察商业现象，并持续探索财务分析、经营洞察与技术工具在实际商业场景中的结合与应用。
+            </span>
+            <span class="lang-en">
+              MSc in Accounting candidate at The Hong Kong Polytechnic University, with a dual-degree background in Accounting and English from Shanghai International Studies University. Experienced in budgeting, operational analysis, valuation support, and financial reporting across NIO, Volvo Group, EY and LANXESS.
+            </span>
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#experience">
+              <span class="lang-zh">查看我的经历</span>
+              <span class="lang-en">View Experience</span>
+            </a>
+            <a class="btn btn-secondary" href="resume-zhaojiahui.pdf" download>
+              <span class="lang-zh">下载简历</span>
+              <span class="lang-en">Download Resume</span>
+            </a>
+          </div>
+
+          <div class="hero-tags">
+            <span class="tag">FP&A / Financial Analysis</span>
+            <span class="tag">Excel · Power BI · Python</span>
+            <span class="tag">Business Insight</span>
+            <span class="tag">AI Workflow</span>
+          </div>
+        </div>
+
+        <div class="hero-right reveal">
+          <div class="hero-photo-shell glass soft-glow">
+            <img class="hero-photo" src="profile-formal.jpg" alt="Professional portrait" />
+            <div class="float-card float-1">
+              <small>Current Focus</small>
+              <strong>Finance Analysis<br>Data-Driven Decision</strong>
+            </div>
+            <div class="float-card float-2">
+              <small>Academic Background</small>
+              <strong>PolyU MSc in Accounting<br>SISU Dual Degree</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="matcher reveal">
+        <div class="matcher-shell glass soft-glow">
+          <div class="matcher-top">
+            <div>
+              <div class="matcher-title">
+                <span class="lang-zh">AI 岗位匹配器</span>
+                <span class="lang-en">AI Job Match Analyzer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="matcher-input-wrap">
+            <textarea id="jdInput" placeholder="粘贴您的JD，查看赵嘉荟与岗位的匹配度~"></textarea>
+            <button class="analyze-btn" id="analyzeBtn">
+              <span class="lang-zh">一键分析匹配</span>
+              <span class="lang-en">Analyze Match</span>
+            </button>
+          </div>
+
+          <div class="matcher-results hidden-results" id="matcherResults">
+            <div class="result-card glass">
+              <div class="result-title">
+                <span class="lang-zh">匹配矩阵</span>
+                <span class="lang-en">Match Matrix</span>
+              </div>
+
+              <div class="score-head">
+                <div>
+                  <div class="score-label">
+                    <span class="lang-zh">综合匹配度</span>
+                    <span class="lang-en">Overall Match</span>
+                  </div>
+                  <div class="score-big" id="overallScore">--</div>
+                </div>
+              </div>
+
+              <div class="matrix">
+                <div class="matrix-row">
+                  <span><span class="lang-zh">学历</span><span class="lang-en">Education</span></span>
+                  <div class="bar"><div class="bar-fill" id="barEdu"></div></div>
+                  <b id="scoreEdu">--</b>
+                </div>
+                <div class="matrix-row">
+                  <span><span class="lang-zh">经验</span><span class="lang-en">Experience</span></span>
+                  <div class="bar"><div class="bar-fill" id="barExp"></div></div>
+                  <b id="scoreExp">--</b>
+                </div>
+                <div class="matrix-row">
+                  <span><span class="lang-zh">技能</span><span class="lang-en">Skills</span></span>
+                  <div class="bar"><div class="bar-fill" id="barSkill"></div></div>
+                  <b id="scoreSkill">--</b>
+                </div>
+                <div class="matrix-row">
+                  <span><span class="lang-zh">软实力</span><span class="lang-en">Soft Skills</span></span>
+                  <div class="bar"><div class="bar-fill" id="barSoft"></div></div>
+                  <b id="scoreSoft">--</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-card glass">
+              <div class="result-title">
+                <span class="lang-zh">匹配亮点</span>
+                <span class="lang-en">Match Highlights</span>
+              </div>
+              <ul class="highlight-list" id="highlightsList"></ul>
+            </div>
+
+            <div class="result-card glass">
+              <div class="result-title">
+                <span class="lang-zh">综合总结</span>
+                <span class="lang-en">Overall Summary</span>
+              </div>
+              <div class="summary-box" id="summaryBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">About</div>
+          <h2 class="section-title">
+            <span class="lang-zh">兼具财务底层逻辑与数据分析能力</span>
+            <span class="lang-en">Bridging Finance Logic with Data-Driven Thinking</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">
+            我希望在未来持续深耕财务分析、业务分析或 FP&A 相关方向，
+            成为能够连接业务、财务与数据的价值创造者。
+          </span>
+          <span class="lang-en">
+            A long-term focus on FP&A, financial analysis, and business analysis, with the goal of creating value at the intersection of business, finance and data.
+          </span>
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass reveal">
+          <p>
+            <span class="lang-zh">
+              我是一名兼具财务基础、数据工具能力与国际化表达能力的复合型候选人。
+              在过往实践中，我持续关注如何通过 Excel 建模、Power BI 可视化、Python 数据分析等方式，
+              将复杂业务问题拆解为可量化、可跟踪、可支持决策的分析结果。
+            </span>
+            <span class="lang-en">
+              A composite profile combining accounting fundamentals, strong data-tool proficiency, and international communication ability. Special interest lies in turning complex business issues into structured, quantifiable insights through Excel modeling, Power BI visualization, and Python analysis.
+            </span>
+          </p>
+          <p>
+            <span class="lang-zh">
+              过往经历覆盖预算支持、经营分析、资产评估、报表整理、业务协同等多个场景，
+              也让我逐步形成了“用数据理解业务、用财务支撑判断”的工作方法。
+            </span>
+            <span class="lang-en">
+              Experience spans budgeting support, operational analytics, valuation research, reporting, and cross-functional collaboration—forming a practical working style centered on understanding business through data and supporting decisions through finance.
+            </span>
+          </p>
+          <p>
+            <span class="lang-zh">
+              我重视表达、协作与跨文化沟通，希望在高标准、快节奏、结果导向的团队中持续成长。
+            </span>
+            <span class="lang-en">
+              Strong emphasis is also placed on communication, collaboration, and cross-cultural adaptability, with a preference for high-standard, fast-paced, and results-oriented environments.
+            </span>
+          </p>
+        </div>
+
+        <div class="quick-card glass reveal">
+          <div class="quick-grid">
+            <div class="quick-item">
+              <span>Base</span>
+              <strong>Hong Kong / Shanghai</strong>
+            </div>
+            <div class="quick-item">
+              <span>Degree</span>
+              <strong>MSc in Accounting</strong>
+            </div>
+            <div class="quick-item">
+              <span>Language</span>
+              <strong>Chinese / English</strong>
+            </div>
+            <div class="quick-item">
+              <span>Focus</span>
+              <strong>Finance × Data × AI</strong>
+            </div>
+            <div class="quick-item">
+              <span>Certification</span>
+              <strong>
+                <span class="lang-zh">ACCA 在读（PM阶段）</span>
+                <span class="lang-en">ACCA Candidate (PM Stage)</span>
+              </strong>
+            </div>
+            <div class="quick-item">
+              <span>English</span>
+              <strong>IELTS 6.5</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">Strengths</div>
+          <h2 class="section-title">
+            <span class="lang-zh">核心能力</span>
+            <span class="lang-en">Core Strengths</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">
+            以财务专业能力为核心，结合数据工具、技术能力与跨团队协作经验，
+            支持业务分析与管理决策。
+          </span>
+          <span class="lang-en">
+            Combining finance expertise, analytical tools, technical capability, and cross-functional collaboration to support business insight and decision-making.
+          </span>
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card glass reveal">
+          <div class="skill-index">01</div>
+          <h3 class="skill-title">
+            <span class="lang-zh">财务专业</span><span class="lang-en">Finance</span>
+          </h3>
+          <ul class="skill-list">
+            <li><span class="lang-zh">预算管理（Opex / Capex / Staff）</span><span class="lang-en">Budgeting (Opex / Capex / Staff)</span></li>
+            <li><span class="lang-zh">财务台账搭建与执行跟踪</span><span class="lang-en">Budget tracking & financial schedules</span></li>
+            <li><span class="lang-zh">差异分析与偏差定位</span><span class="lang-en">Variance analysis</span></li>
+            <li><span class="lang-zh">资产评估与报告底稿撰写</span><span class="lang-en">Valuation support & working papers</span></li>
+            <li><span class="lang-zh">函证流程执行与跟进</span><span class="lang-en">Confirmation workflow management</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-card glass reveal">
+          <div class="skill-index">02</div>
+          <h3 class="skill-title">
+            <span class="lang-zh">数据分析</span><span class="lang-en">Data</span>
+          </h3>
+          <ul class="skill-list">
+            <li><span class="lang-zh">Excel 建模（XLOOKUP / 透视表）</span><span class="lang-en">Excel modeling (XLOOKUP / Pivot)</span></li>
+            <li><span class="lang-zh">Power BI 可视化分析</span><span class="lang-en">Power BI visualization</span></li>
+            <li><span class="lang-zh">Tableau / Alteryx</span><span class="lang-en">Tableau / Alteryx</span></li>
+            <li><span class="lang-zh">经营数据报表与指标追踪</span><span class="lang-en">Operational reporting & KPI tracking</span></li>
+            <li><span class="lang-zh">销售与利润指标分析</span><span class="lang-en">Sales and gross profit analysis</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-card glass reveal">
+          <div class="skill-index">03</div>
+          <h3 class="skill-title">
+            <span class="lang-zh">编程与技术</span><span class="lang-en">Technology</span>
+          </h3>
+          <ul class="skill-list">
+            <li><span class="lang-zh">Python（Pandas / Matplotlib）</span><span class="lang-en">Python (Pandas / Matplotlib)</span></li>
+            <li><span class="lang-zh">LSTM 时间序列建模</span><span class="lang-en">LSTM time-series modeling</span></li>
+            <li><span class="lang-zh">数据清洗与可视化</span><span class="lang-en">Data preprocessing & visualization</span></li>
+            <li><span class="lang-zh">AI CODING(Cursor\Claude Code)</span><span class="lang-en">LangChain / AutoGen exploration</span></li>
+            <li><span class="lang-zh">AI 流程自动化应用</span><span class="lang-en">AI workflow automation</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-card glass reveal">
+          <div class="skill-index">04</div>
+          <h3 class="skill-title">
+            <span class="lang-zh">语言与协作</span><span class="lang-en">Communication</span>
+          </h3>
+          <ul class="skill-list">
+            <li><span class="lang-zh">中文 / 英语（雅思 6.5）</span><span class="lang-en">Chinese / English (IELTS 6.5)</span></li>
+            <li><span class="lang-zh">会计学 + 英语双学位背景</span><span class="lang-en">Accounting + English dual-degree</span></li>
+            <li><span class="lang-zh">跨部门沟通与协作</span><span class="lang-en">Cross-functional collaboration</span></li>
+            <li><span class="lang-zh">项目统筹与团队组织</span><span class="lang-en">Project coordination & team organization</span></li>
+            <li><span class="lang-zh">策略分析与结果导向执行</span><span class="lang-en">Structured thinking & execution</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">Experience</div>
+          <h2 class="section-title">
+            <span class="lang-zh">实习经历</span>
+            <span class="lang-en">Professional Experience</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">
+            从财务支持到运营分析，再到金融建模估值与业务协同，这些经历帮助我理解数字背后的业务逻辑。
+          </span>
+          <span class="lang-en">
+            From budgeting support and operational analytics to valuation research and business coordination, each experience deepened understanding of the business behind the numbers.
+          </span>
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-card glass reveal">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-role">
+                <span class="lang-zh">FBP 财务实习</span><span class="lang-en">FBP Finance Intern</span>
+              </div>
+              <div class="timeline-company">上海蔚来汽车有限公司 · NIO</div>
+            </div>
+            <div class="timeline-date">2026.03 – 2026.06</div>
+          </div>
+          <ul class="timeline-list">
+            <li><span class="lang-zh">基于产研CBU架构对接产品设计与研发业务线，参与 Opex、Capex、Staff 三类预算管理的全流程支持。</span><span class="lang-en">Supported end-to-end budgeting across Opex, Capex and Staff for product design and R&D functions.</span></li>
+            <li><span class="lang-zh">协助研发项目预算立项数据收集、测算与台账搭建。</span><span class="lang-en">Collected project inputs, supported estimation, and built budgeting schedules for R&D initiatives.</span></li>
+            <li><span class="lang-zh">独立搭建 Excel 预算管理模型，实现多源数据清洗、口径校验与自动化统计。</span><span class="lang-en">Built an Excel budgeting model for data cleaning, consistency checks, and automated statistics.</span></li>
+            <li><span class="lang-zh">持续跟踪预算执行情况，开展差异分析并定位偏差原因。</span><span class="lang-en">Tracked budget execution, performed variance analysis, and identified root causes of deviations.</span></li>
+          </ul>
+        </div>
+
+        <div class="timeline-card glass reveal">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-role">
+                <span class="lang-zh">运营分析实习</span><span class="lang-en">Operations Analysis Intern</span>
+              </div>
+              <div class="timeline-company">沃尔沃集团（中国） · Volvo Group</div>
+            </div>
+            <div class="timeline-date">2025.07 – 2025.09</div>
+          </div>
+          <ul class="timeline-list">
+            <li><span class="lang-zh">独立负责全国经销商延保数据更新与维护，计算 Gross Profit 等核心指标。</span><span class="lang-en">Maintained nationwide dealer warranty-extension data and calculated core metrics including Gross Profit.</span></li>
+            <li><span class="lang-zh">跟进 23 个重点集团“全民营销激励计划”，完成日更效能报告与月更绩效报告。</span><span class="lang-en">Tracked 23 key dealer groups under a sales incentive program with daily and monthly reports.</span></li>
+            <li><span class="lang-zh">使用 Excel 与 Power BI 对销售数据进行提取、匹配和可视化处理。</span><span class="lang-en">Used Excel and Power BI to extract, reconcile and visualize sales data.</span></li>
+            <li><span class="lang-zh">结合经销商表现进行对比分析，协助制定延保激励政策与营销方案。</span><span class="lang-en">Conducted comparative analysis to support incentive policy and campaign planning.</span></li>
+          </ul>
+        </div>
+
+        <div class="timeline-card glass reveal">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-role">
+                <span class="lang-zh">战略与交易咨询实习</span><span class="lang-en">Strategy & Transaction Consulting Intern</span>
+              </div>
+              <div class="timeline-company">安永（中国）企业咨询有限公司 · EY</div>
+            </div>
+            <div class="timeline-date">2024.11 – 2025.01</div>
+          </div>
+          <ul class="timeline-list">
+            <li><span class="lang-zh">参与客户出售公司股份相关资产评估项目，协助完成市场法估值研究。</span><span class="lang-en">Supported valuation engagement for a share disposal project using market approach research.</span></li>
+            <li><span class="lang-zh">负责筛选可比公司、检索公开市场交易数据及行业价格信息。</span><span class="lang-en">Screened comparable companies and collected market transaction and industry pricing data.</span></li>
+            <li><span class="lang-zh">发起并跟进约 160 份银行询证函，最终收回有效回函 140 份。</span><span class="lang-en">Initiated and tracked around 160 bank confirmations, collecting 140 valid responses.</span></li>
+            <li><span class="lang-zh">撰写 18 份一级子公司资产评估报告底稿及对应评估说明。</span><span class="lang-en">Prepared 18 valuation working papers and explanatory notes for subsidiaries.</span></li>
+          </ul>
+        </div>
+
+        <div class="timeline-card glass reveal">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-role">
+                <span class="lang-zh">财务部实习</span><span class="lang-en">Finance Department Intern</span>
+              </div>
+              <div class="timeline-company">朗盛化学（中国）有限公司 · LANXESS</div>
+            </div>
+            <div class="timeline-date">2024.01 – 2024.06</div>
+          </div>
+          <ul class="timeline-list">
+            <li><span class="lang-zh">使用 SAP 与 Excel 归集、整合并存档 4 家客户公司的银行汇票及进出口发票。</span><span class="lang-en">Consolidated and archived bank drafts and import/export invoices for four client entities via SAP and Excel.</span></li>
+            <li><span class="lang-zh">通过卓策开票系统批量开具并分发发票，支持日常财务运营流程。</span><span class="lang-en">Processed invoice issuance and distribution to support daily finance operations.</span></li>
+            <li><span class="lang-zh">每月汇总海外各公司与事业部营业额，制作 General Counsel Report。</span><span class="lang-en">Compiled monthly turnover by entity and business unit for the General Counsel Report.</span></li>
+            <li><span class="lang-zh">利用 Excel 数据透视表、常用函数及图表实现销售数据整理与可视化。</span><span class="lang-en">Used Excel pivots, formulas and charts to structure and visualize sales data.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">Projects</div>
+          <h2 class="section-title">
+            <span class="lang-zh">项目经历</span>
+            <span class="lang-en">Selected Projects</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">
+            用建模、运营分析、商业策划与组织协作能力，验证自己在不同场景下解决问题的方式。
+          </span>
+          <span class="lang-en">
+            Demonstrating problem-solving through financial modeling, operational analysis, business planning and team leadership across different contexts.
+          </span>
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <article class="project-card glass reveal project-lg">
+          <h3 class="project-title">
+            <span class="lang-zh">金融数据建模竞赛：LSTM 股价预测</span>
+            <span class="lang-en">Financial Modeling Competition: LSTM Stock Forecasting</span>
+          </h3>
+          <div class="project-meta">2023.05</div>
+          <p class="project-desc">
+            <span class="lang-zh">使用 LSTM 模型对美的集团股票价格进行预测，结合数据预处理、可视化与参数优化提升模型效果。</span>
+            <span class="lang-en">Developed an LSTM-based stock forecasting model using preprocessing, visualization and parameter tuning.</span>
+          </p>
+          <ul class="project-list">
+            <li><span class="lang-zh">采用零均值归一化、缺失值处理等方式完成数据预处理。</span><span class="lang-en">Applied normalization and missing-value handling for preprocessing.</span></li>
+            <li><span class="lang-zh">基于股票波动特征分析建模对象适配性。</span><span class="lang-en">Evaluated stock stability and suitability for time-series modeling.</span></li>
+            <li><span class="lang-zh">使用 Pandas、Matplotlib 完成分析与可视化。</span><span class="lang-en">Used Pandas and Matplotlib for analysis and visualization.</span></li>
+            <li><span class="lang-zh">借助 TensorBoard 与 ModelCheckpoint 进行超参数优化。</span><span class="lang-en">Optimized hyperparameters via TensorBoard and ModelCheckpoint.</span></li>
+          </ul>
+          <div class="project-tags">
+            <span>Python</span><span>LSTM</span><span>Time Series</span><span>Visualization</span>
+          </div>
+        </article>
+
+        <article class="project-card glass reveal project-md">
+          <h3 class="project-title">
+            <span class="lang-zh">“互联网+”大学生创新创业大赛</span>
+            <span class="lang-en">Internet+ Innovation & Entrepreneurship Competition</span>
+          </h3>
+          <div class="project-meta">
+            <span class="lang-zh">项目负责人｜2023.04 – 2023.09</span>
+            <span class="lang-en">Project Lead | 2023.04 – 2023.09</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-zh">组织团队开展市场调研，分析教育需求与竞争格局，制定商业模式和项目策略。</span>
+            <span class="lang-en">Led market research, analyzed user needs and competition, and developed the business model and strategy.</span>
+          </p>
+          <ul class="project-list">
+            <li><span class="lang-zh">负责项目整体统筹与任务分工。</span><span class="lang-en">Coordinated project scope and team execution.</span></li>
+            <li><span class="lang-zh">设计个性化教育方案，增强学习体验吸引力。</span><span class="lang-en">Designed tailored education solutions for different user groups.</span></li>
+            <li><span class="lang-zh">对接学校、社区与企业资源，探索合作机会。</span><span class="lang-en">Built links with schools, communities, and enterprises.</span></li>
+          </ul>
+          <div class="project-tags">
+            <span>Project Management</span><span>Market Research</span><span>Business Model</span>
+          </div>
+        </article>
+
+        <article class="project-card glass reveal project-half">
+          <h3 class="project-title">
+            <span class="lang-zh">图文星体咖啡 · 财务运营管理</span>
+            <span class="lang-en">Campus Café · Financial Operations</span>
+          </h3>
+          <div class="project-meta">
+            <span class="lang-zh">校园经营实践</span>
+            <span class="lang-en">Campus Business Practice</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-zh">使用 Excel 与 Python 分析经营数据，参与产品上新、库存盘点与采购优化，支持门店财务运营。</span>
+            <span class="lang-en">Used Excel and Python to analyze operating data, support procurement decisions, and improve store-level financial operations.</span>
+          </p>
+          <ul class="project-list">
+            <li><span class="lang-zh">“冬暖”系列月销售额环比增长 15%，月收入超 ¥50,000。</span><span class="lang-en">Achieved +15% MoM growth with monthly revenue above RMB 50,000.</span></li>
+            <li><span class="lang-zh">推进香柠系列新品供应链对接，打通新供货渠道。</span><span class="lang-en">Opened a new supply channel for product launch.</span></li>
+            <li><span class="lang-zh">制作周度营业表与损耗表，结合库存盘点优化采购配额。</span><span class="lang-en">Built weekly operation and wastage reports to optimize inventory and purchasing.</span></li>
+            <li><span class="lang-zh">毕业典礼期间 3 小时促销活动创收 ¥2,000。</span><span class="lang-en">Generated RMB 2,000 in a 3-hour graduation promotion campaign.</span></li>
+          </ul>
+          <div class="project-tags">
+            <span>Operations</span><span>Excel</span><span>Python</span><span>Inventory</span>
+          </div>
+        </article>
+
+        <article class="project-card glass reveal project-half">
+          <h3 class="project-title">
+            <span class="lang-zh">一路向虔支教队</span>
+            <span class="lang-en">Volunteer Teaching Team</span>
+          </h3>
+          <div class="project-meta">
+            <span class="lang-zh">副队长兼宣传组长｜2022.08 – 2023.09</span>
+            <span class="lang-en">Deputy Leader & Communications Lead | 2022.08 – 2023.09</span>
+          </div>
+          <p class="project-desc">
+            <span class="lang-zh">参与项目整体规划、预算与后勤统筹，同时负责宣传运营、品牌合作与团队招募。</span>
+            <span class="lang-en">Managed planning, budgeting, communications, brand partnership and team recruitment for a volunteer education initiative.</span>
+          </p>
+          <ul class="project-list">
+            <li><span class="lang-zh">运营公众号、视频号与 B 站账号，分析宣传成效。</span><span class="lang-en">Managed content channels and tracked communication impact.</span></li>
+            <li><span class="lang-zh">与安热沙品牌合作，获得 ¥7,000 赞助支持。</span><span class="lang-en">Secured RMB 7,000 sponsorship through brand partnership.</span></li>
+            <li><span class="lang-zh">组织团队面试，参与组织架构设计与人员分配设计。</span><span class="lang-en">Led team recruitment and organizational design.</span></li>
+          </ul>
+          <div class="project-tags">
+            <span>Leadership</span><span>Budgeting</span><span>Brand Cooperation</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">Education</div>
+          <h2 class="section-title">
+            <span class="lang-zh">教育背景与荣誉</span>
+            <span class="lang-en">Education & Recognition</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">
+            会计学与英语双学位背景，结合硕士阶段的信息技术与计量课程训练，形成了更完整的专业视角。
+          </span>
+          <span class="lang-en">
+            A dual-degree foundation in Accounting and English, strengthened by postgraduate training in econometrics and information technology applications in accounting.
+          </span>
+        </p>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-card glass reveal">
+          <div class="edu-head">
+            <div class="edu-school">
+               <span class="lang-zh">香港理工大学</span><span class="lang-en">The Hong Kong Polytechnic University</span>
+           </div>
+           <img class="edu-logo polyu" src="polyu-logo.png" alt="香港理工大学校徽 / PolyU Logo" />
+       </div>
+          <div class="edu-major">
+            <span class="lang-zh">会计学｜全日制硕士</span><span class="lang-en">MSc in Accounting</span>
+          </div>
+          <div class="edu-date">2025.09 – 2026.10</div>
+          <div class="course-title"><span class="lang-zh">主修课程</span><span class="lang-en">Selected Coursework</span></div>
+          <div class="course-tags">
+            <span><span class="lang-zh">财务会计</span><span class="lang-en">Financial Accounting</span></span>
+            <span><span class="lang-zh">计量经济学</span><span class="lang-en">Econometrics</span></span>
+            <span><span class="lang-zh">会计信息系统中的信息技术应用</span><span class="lang-en">IT in Accounting Information Systems</span></span>
+            <span><span class="lang-zh">会计控制中的信息技术应用</span><span class="lang-en">IT in Accounting Control</span></span>
+          </div>
+        </div>
+
+        <div class="edu-card glass reveal">
+         <div class="edu-head">
+            <div class="edu-school">
+               <span class="lang-zh">上海外国语大学（211）</span><span class="lang-en">Shanghai International Studies University</span>
+            </div>
+            <img class="edu-logo sisu" src="sisu-logo.png" alt="上海外国语大学校徽 / SISU Logo" />
+        </div>
+          <div class="edu-major">
+            <span class="lang-zh">会计学 + 英语｜全日制本科双学位</span><span class="lang-en">Dual Degree in Accounting and English</span>
+          </div>
+          <div class="edu-date">2021.09 – 2025.06</div>
+
+          <div class="course-title"><span class="lang-zh">会计方向课程</span><span class="lang-en">Accounting Coursework</span></div>
+          <div class="course-tags" style="margin-bottom:14px;">
+            <span><span class="lang-zh">审计</span><span class="lang-en">Auditing</span></span>
+            <span><span class="lang-zh">税法</span><span class="lang-en">Tax Law</span></span>
+            <span><span class="lang-zh">经济法</span><span class="lang-en">Economic Law</span></span>
+            <span><span class="lang-zh">高级财务会计</span><span class="lang-en">Advanced Financial Accounting</span></span>
+            <span><span class="lang-zh">管理会计</span><span class="lang-en">Management Accounting</span></span>
+            <span><span class="lang-zh">微观经济学</span><span class="lang-en">Microeconomics</span></span>
+            <span><span class="lang-zh">宏观经济学</span><span class="lang-en">Macroeconomics</span></span>
+            <span><span class="lang-zh">国际贸易</span><span class="lang-en">International Trade</span></span>
+          </div>
+
+          <div class="course-title"><span class="lang-zh">英语方向课程</span><span class="lang-en">English Coursework</span></div>
+          <div class="course-tags">
+            <span><span class="lang-zh">翻译理论与实践</span><span class="lang-en">Translation Theory & Practice</span></span>
+            <span><span class="lang-zh">跨文化交流</span><span class="lang-en">Cross-cultural Communication</span></span>
+            <span><span class="lang-zh">高级英语</span><span class="lang-en">Advanced English</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="awards-grid">
+        <div class="award-card glass reveal">
+          <h3 class="project-title" style="margin-bottom:14px;">
+            <span class="lang-zh">荣誉与奖项</span><span class="lang-en">Recognition</span>
+          </h3>
+          <ul class="award-list">
+            <li><span class="lang-zh">多次获得校级奖学金。</span><span class="lang-en">Recipient of multiple academic scholarships.</span></li>
+            <li><span class="lang-zh">拥有创新创业竞赛相关参赛与项目实践经历。</span><span class="lang-en">Experience in innovation and entrepreneurship competitions.</span></li>
+            <li><span class="lang-zh">第九届“互联网+”大学生创新创业大赛（上海市赛）项目负责人。</span><span class="lang-en">Project lead in the 9th Internet+ University Innovation Competition.</span></li>
+            <li><span class="lang-zh">第二届“上外杯”金融数据建模与案例分析竞赛参赛经历。</span><span class="lang-en">Participant in a financial data modeling and case analysis competition.</span></li>
+            <li><span class="lang-zh">ACCA 在读（PM阶段），持续强化财务管理与业财分析能力。</span><span class="lang-en">Currently studying ACCA (PM stage), with continued focus on management accounting and financial analysis.</span></li>
+          </ul>
+        </div>
+
+        <div class="award-card glass reveal">
+          <h3 class="project-title" style="margin-bottom:10px;">Tools & Interests</h3>
+          <p class="project-desc">
+            <span class="lang-zh">关注 FP&A、Business Analysis、Data-driven Decision Making，以及 AI 在财务与商业流程中的实际应用。</span>
+            <span class="lang-en">Interested in FP&A, business analysis, data-driven decision-making, and practical AI applications in finance and business workflows.</span>
+          </p>
+          <div class="tools">
+            <span>Excel</span><span>Power BI</span><span>Python</span><span>Tableau</span>
+            <span>Alteryx</span><span>SAP</span><span>LangChain</span><span>AutoGen</span>
+            <span>PS</span><span>Pr</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">
+            <span class="lang-zh">联系我</span><span class="lang-en">Let’s Connect</span>
+          </h2>
+        </div>
+        <p class="section-desc">
+          <span class="lang-zh">如果你希望进一步了解我的经历、项目或职业方向，欢迎通过以下方式联系我。</span>
+          <span class="lang-en">For more information about background, project experience, or career direction, feel free to get in touch.</span>
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card glass reveal">
+          <h3 class="project-title">Get in touch</h3>
+          <p class="contact-note">
+            <span class="lang-zh">对财务分析、经营分析、FP&A、商业分析等方向保持长期兴趣，也乐于交流数据工具与 AI 工作流在业务场景中的实践方式。</span>
+            <span class="lang-en">Long-term interest lies in financial analysis, FP&A, business analysis, and data-enabled decision support, alongside practical discussion of AI workflow applications in business contexts.</span>
+          </p>
+
+          <div class="contact-lines">
+            <div class="contact-line"><span><span class="lang-zh">电话</span><span class="lang-en">Phone</span></span><strong>(+86) 19821744267</strong></div>
+            <div class="contact-line"><span><span class="lang-zh">邮箱</span><span class="lang-en">Email</span></span><strong>13345403323@163.com</strong></div>
+            <div class="contact-line"><span><span class="lang-zh">小红书</span><span class="lang-en">RED</span></span><strong>5299084156</strong></div>
+            <div class="contact-line"><span><span class="lang-zh">出生年月</span><span class="lang-en">Birth Date</span></span><strong>2003.01.28</strong></div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:22px;">
+            <a class="btn btn-primary" href="mailto:13345403323@163.com">Email Me</a>
+            <a class="btn btn-secondary" href="resume-zhaojiahui.pdf" download>
+              <span class="lang-zh">下载 PDF 简历</span>
+              <span class="lang-en">Download Resume</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-card glass reveal">
+          <div class="side-photo">
+            <img src="profile-life.jpg" alt="Personal portrait" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 Zhao Jiahui · Personal Portfolio</div>
+        <div>Designed with a modern finance-tech aesthetic.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    const btnZh = document.getElementById('btn-zh');
+    const btnEn = document.getElementById('btn-en');
+
+    function setLanguage(lang){
+      document.body.classList.toggle('en', lang === 'en');
+      btnZh.classList.toggle('active', lang === 'zh');
+      btnEn.classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+
+      const jdInput = document.getElementById('jdInput');
+      if(lang === 'en'){
+        jdInput.placeholder = "Paste the JD to view Zhao Jiahui's role match.";
+      } else {
+        jdInput.placeholder = "粘贴您的JD，查看赵嘉荟与岗位的匹配度~";
+      }
+    }
+
+    btnZh.addEventListener('click', () => setLanguage('zh'));
+    btnEn.addEventListener('click', () => setLanguage('en'));
+
+    const profile = {
+      education: [
+        "会计学硕士", "香港理工大学", "会计学", "英语双学位", "上海外国语大学",
+        "msc in accounting", "polyu", "accounting", "english", "dual degree"
+      ],
+      experience: [
+        "预算", "budget", "budgeting", "opex", "capex", "staff", "差异分析", "variance analysis",
+        "运营分析", "operations analysis", "财务分析", "financial analysis",
+        "资产评估", "valuation", "research", "bank confirmation",
+        "gross profit", "report", "reporting", "fp&a", "fpa", "business analysis",
+        "sap", "power bi", "excel", "dealer", "sales analysis", "profit", "revenue", "cost"
+      ],
+      skills: [
+        "excel", "xlookup", "pivot", "pivot table", "power bi", "tableau", "alteryx",
+        "python", "pandas", "matplotlib", "lstm", "langchain", "autogen", "ai",
+        "data analysis", "visualization", "建模", "可视化", "数据分析"
+      ],
+      soft: [
+        "沟通", "communication", "跨部门", "cross-functional", "项目管理", "project management",
+        "团队", "team", "领导力", "leadership", "协调", "coordination", "协作", "stakeholder"
+      ]
+    };
+
+    const financeKeywords = [
+      "fp&a", "fpa", "financial analysis", "finance analyst", "financial analyst",
+      "finance", "budget", "budgeting", "forecast", "forecasting",
+      "财务", "财务分析", "预算", "预算管理", "经营分析", "商业分析",
+      "business analysis", "management accounting", "管理会计",
+      "profit", "revenue", "cost", "margin", "gross profit", "reporting", "variance analysis"
+    ];
+
+    const jdInput = document.getElementById('jdInput');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const matcherResults = document.getElementById('matcherResults');
+
+    function normalizeText(text){
+      return (text || "").toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    function keywordScore(text, keywords, base = 30, maxAdd = 65){
+      const hits = [];
+      keywords.forEach(k => {
+        if(text.includes(k.toLowerCase())) hits.push(k);
+      });
+      const uniqueHits = [...new Set(hits)];
+      const ratio = Math.min(uniqueHits.length / Math.max(4, keywords.length * 0.22), 1);
+      const score = Math.round(base + ratio * maxAdd);
+      return { score: Math.min(score, 98), hits: uniqueHits };
+    }
+
+    function isFinanceRelated(text){
+      return financeKeywords.some(k => text.includes(k.toLowerCase()));
+    }
+
+    function detectSeniorityPenalty(text){
+      const hardTerms = [
+        "5年以上","8年以上","10年以上","年以上经验",
+        "senior manager","director","vp","vice president",
+        "10+ years","8+ years","5+ years","head of"
+      ];
+      return hardTerms.some(t => text.includes(t)) ? 8 : 0;
+    }
+
+    function boostForRelevantRoles(text){
+      const strong = [
+        "fp&a","fpa","financial analysis","finance analyst","budget","budgeting",
+        "commercial finance","business analysis","data analysis","财务分析","预算管理","经营分析","商业分析","数据分析"
+      ];
+      return strong.some(t => text.includes(t)) ? 8 : 0;
+    }
+
+    function renderScore(id, value){
+      document.getElementById(id).textContent = value;
+    }
+
+    function setBar(id, value){
+      document.getElementById(id).style.width = value + "%";
+    }
+
+    function generateHighlights(text, resEdu, resExp, resSkill, resSoft){
+      const zh = !document.body.classList.contains('en');
+      const highlights = [];
+
+      const skillMap = [
+        ["excel", zh ? "具备扎实的 Excel 建模与数据清洗能力。" : "Strong Excel modeling and data cleaning capability."],
+        ["power bi", zh ? "Power BI 可视化经验与分析型岗位要求具有较高相关性。" : "Power BI visualization experience aligns well with analytical roles."],
+        ["python", zh ? "具备 Python 数据分析能力，可支持更深入的数据处理与洞察输出。" : "Python capability supports deeper data processing and insight generation."],
+        ["budget", zh ? "预算支持与差异分析经历对 FP&A / 财务分析类岗位具有直接适配性。" : "Budgeting and variance analysis experience directly supports FP&A and finance analysis roles."],
+        ["fp&a", zh ? "岗位方向与预算管理、业务支持及经营分析经历高度相关。" : "The role direction is highly aligned with budgeting, business support, and operational analysis experience."],
+        ["valuation", zh ? "资产评估与 research 经历增强了分析严谨性与商业判断能力。" : "Valuation and research experience strengthens analytical rigor and business judgment."],
+        ["communication", zh ? "跨部门沟通与项目协同能力适合业务支持型与分析型岗位。" : "Cross-functional communication and coordination fit business-facing analytical roles."],
+        ["business analysis", zh ? "运营分析与商业洞察经历能够支撑业务分析类职责。" : "Operational analytics and business insight experience supports business analysis responsibilities."],
+        ["data analysis", zh ? "数据工具栈较完整，能够支撑从整理、分析到可视化的全流程输出。" : "A solid analytics toolkit supports end-to-end data analysis and visualization."],
+        ["finance", zh ? "教育背景与实习经历均集中于财务与分析相关场景。" : "Both academic and internship backgrounds are concentrated in finance and analysis-related contexts."],
+        ["财务", zh ? "教育背景与实习经历均集中于财务与分析相关场景。" : "Both academic and internship backgrounds are concentrated in finance and analysis-related contexts."]
+      ];
+
+      skillMap.forEach(([k, sentence]) => {
+        if(text.includes(k) && highlights.length < 4) highlights.push(sentence);
+      });
+
+      if(highlights.length === 0){
+        if(resSkill.score >= 75) highlights.push(zh ? "数据分析与可视化能力对岗位要求形成有效支撑。" : "Data analysis and visualization capabilities support the role effectively.");
+        if(resExp.score >= 75) highlights.push(zh ? "相关实习经历覆盖预算、经营分析与业务支持等核心场景。" : "Relevant internships cover budgeting, operational analysis, and business support.");
+        if(resSoft.score >= 72) highlights.push(zh ? "沟通协作与项目推进能力对跨团队岗位具有加分作用。" : "Communication and coordination strengths add value in cross-functional roles.");
+      }
+
+      if(highlights.length < 3){
+        highlights.push(zh ? "会计学硕士与英语双学位背景兼具专业基础与国际化表达能力。" : "The combination of an accounting master's degree and English dual-degree supports both professionalism and international communication.");
+      }
+
+      return highlights.slice(0, 4);
+    }
+
+    function generateSummary(overall, text){
+      const zh = !document.body.classList.contains('en');
+      const financeRole = isFinanceRelated(text);
+      const senior = /(5\+ years|8\+ years|10\+ years|director|vp|senior manager|5年以上|8年以上|10年以上)/.test(text);
+
+      if(zh){
+        if(financeRole && overall >= 80){
+          if(senior){
+            return "赵嘉荟在财务分析、预算支持、经营分析与数据处理方面具备较强适配性。尽管岗位若偏资深层级，年限要求可能存在一定差距，但从能力结构与岗位方向来看，具有较高的进入进一步筛选与沟通价值。";
+          }
+          return "赵嘉荟在财务分析、预算支持、经营分析、数据处理及跨团队协同方面展现出较高匹配度，能力结构与岗位方向契合度较强，适合进入进一步筛选环节。";
+        } else if(overall >= 75){
+          return "赵嘉荟在分析能力、数据工具应用、项目执行与业务理解方面具备较好的岗位相关性。若岗位侧重财务分析、FP&A、经营分析或商业分析方向，整体适配表现较为突出。";
+        } else if(overall >= 65){
+          return "赵嘉荟与该岗位存在一定匹配基础，尤其体现在数据处理、分析支持与沟通协作方面。若岗位对资深经验要求较高，则建议结合具体职责进一步评估。";
+        } else {
+          return "该岗位与赵嘉荟的背景存在部分重合，但核心职责与能力关键词覆盖度相对有限。建议优先关注财务分析、FP&A、商业分析及数据分析类岗位。";
+        }
+      } else {
+        if(financeRole && overall >= 80){
+          if(senior){
+            return "Zhao Jiahui demonstrates strong alignment in financial analysis, budgeting support, operational analysis, and data handling. Although a seniority gap may exist for more experienced roles, the capability structure remains highly relevant and worthy of further review.";
+          }
+          return "Zhao Jiahui shows strong alignment in financial analysis, budgeting support, operational analysis, data handling, and cross-functional collaboration. The overall profile is well suited for further evaluation in this role.";
+        } else if(overall >= 75){
+          return "Zhao Jiahui presents solid relevance in analytical capability, data-tool application, execution, and business understanding. The fit is particularly strong for FP&A, finance analysis, operational analysis, and business analysis positions.";
+        } else if(overall >= 65){
+          return "The profile demonstrates a reasonable foundation for this role, especially in analysis support, data handling, and collaboration. Additional evaluation is recommended if the role places strong emphasis on senior-level experience.";
+        } else {
+          return "There is partial overlap between the role and Zhao Jiahui's profile, but core responsibility and keyword coverage appear relatively limited. Finance analysis, FP&A, business analysis, and data analysis roles would likely show stronger alignment.";
+        }
+      }
+    }
+
+    function resetBars(){
+      ['barEdu','barExp','barSkill','barSoft'].forEach(id => {
+        document.getElementById(id).style.width = '0%';
+      });
+    }
+
+    function analyzeJD(){
+      const text = normalizeText(jdInput.value);
+
+      if(!text.trim()){
+        matcherResults.classList.remove('show-results');
+        matcherResults.classList.add('hidden-results');
+        return;
+      }
+
+      const resEdu = keywordScore(text, profile.education, 58, 34);
+      const resExp = keywordScore(text, profile.experience, 48, 46);
+      const resSkill = keywordScore(text, profile.skills, 46, 48);
+      const resSoft = keywordScore(text, profile.soft, 52, 34);
+
+      const financeRole = isFinanceRelated(text);
+      const penalty = detectSeniorityPenalty(text);
+      const boost = boostForRelevantRoles(text);
+
+      let overall = Math.round(
+        resEdu.score * 0.18 +
+        resExp.score * 0.32 +
+        resSkill.score * 0.30 +
+        resSoft.score * 0.20
+      );
+
+      overall = overall - penalty + boost;
+
+      if(financeRole){
+        overall = Math.max(overall, 82);
+        resEdu.score = Math.max(resEdu.score, 82);
+        resExp.score = Math.max(resExp.score, 80);
+        resSkill.score = Math.max(resSkill.score, 81);
+        resSoft.score = Math.max(resSoft.score, 80);
+      }
+
+      overall = Math.max(45, Math.min(96, overall));
+
+      renderScore('overallScore', overall + '/100');
+      renderScore('scoreEdu', resEdu.score);
+      renderScore('scoreExp', resExp.score);
+      renderScore('scoreSkill', resSkill.score);
+      renderScore('scoreSoft', resSoft.score);
+
+      const highlights = generateHighlights(text, resEdu, resExp, resSkill, resSoft);
+      document.getElementById('highlightsList').innerHTML = highlights.map(item => `<li>${item}</li>`).join('');
+
+      const summary = generateSummary(overall, text);
+      document.getElementById('summaryBox').textContent = summary;
+
+      matcherResults.classList.remove('hidden-results');
+      matcherResults.classList.add('show-results');
+
+      resetBars();
+      setTimeout(() => {
+        setBar('barEdu', resEdu.score);
+        setBar('barExp', resExp.score);
+        setBar('barSkill', resSkill.score);
+        setBar('barSoft', resSoft.score);
+      }, 120);
+    }
+
+    analyzeBtn.addEventListener('click', analyzeJD);
+
+    setLanguage('zh');
+  </script>
+</body>
+</html>
